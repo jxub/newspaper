@@ -4,7 +4,7 @@ Anything that has to do with threading in this library
 must be abstracted in this file. If we decide to do gevent
 also, it will deserve its own gevent file.
 """
-__title__ = 'newspaper'
+__title__ = 'newspaper_no_download'
 __author__ = 'Lucas Ou-Yang'
 __license__ = 'MIT'
 __copyright__ = 'Copyright 2014, Lucas Ou-Yang'
@@ -66,12 +66,12 @@ class NewsPool(object):
         We allocate one thread per source to avoid rate limiting.
         5 sources = 5 threads, one per source.
 
-        >>> import newspaper
-        >>> from newspaper import news_pool
+        >>> import newspaper_no_download
+        >>> from newspaper_no_download import news_pool
 
-        >>> cnn_paper = newspaper.build('http://cnn.com')
-        >>> tc_paper = newspaper.build('http://techcrunch.com')
-        >>> espn_paper = newspaper.build('http://espn.com')
+        >>> cnn_paper = newspaper_no_download.build('http://cnn.com')
+        >>> tc_paper = newspaper_no_download.build('http://techcrunch.com')
+        >>> espn_paper = newspaper_no_download.build('http://espn.com')
 
         >>> papers = [cnn_paper, tc_paper, espn_paper]
         >>> news_pool.set(papers)

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-All unit tests for the newspaper library should be contained in this file.
+All unit tests for the newspaper_no_download library should be contained in this file.
 """
 import sys
 import os
@@ -13,7 +13,7 @@ import concurrent.futures
 TEST_DIR = os.path.abspath(os.path.dirname(__file__))
 PARENT_DIR = os.path.join(TEST_DIR, '..')
 
-# newspaper's unit tests are in their own separate module, so
+# newspaper_no_download's unit tests are in their own separate module, so
 # insert the parent directory manually to gain scope of the
 # core module
 sys.path.insert(0, PARENT_DIR)
@@ -22,10 +22,10 @@ TEXT_FN = os.path.join(TEST_DIR, 'data', 'text')
 HTML_FN = os.path.join(TEST_DIR, 'data', 'html')
 URLS_FILE = os.path.join(TEST_DIR, 'data', 'fulltext_url_list.txt')
 
-import newspaper
-from newspaper import Article, fulltext, Source, ArticleException, news_pool
-from newspaper.configuration import Configuration
-from newspaper.urls import get_domain
+import newspaper_no_download
+from newspaper_no_download import Article, fulltext, Source, ArticleException, news_pool
+from newspaper_no_download.configuration import Configuration
+from newspaper_no_download.urls import get_domain
 
 
 def print_test(method):
@@ -325,8 +325,8 @@ class ContentExtractorTestCase(unittest.TestCase):
     """Test specific element extraction cases"""
 
     def setUp(self):
-        self.extractor = newspaper.extractors.ContentExtractor(Configuration())
-        self.parser = newspaper.parsers.Parser
+        self.extractor = newspaper_no_download.extractors.ContentExtractor(Configuration())
+        self.parser = newspaper_no_download.parsers.Parser
 
     def _get_title(self, html):
         doc = self.parser.fromstring(html)
@@ -502,7 +502,7 @@ class UrlTestCase(unittest.TestCase):
         """Prints out a list of urls with our heuristic guess if it is a
         valid news url purely based on the url
         """
-        from newspaper.urls import valid_url
+        from newspaper_no_download.urls import valid_url
 
         with open(os.path.join(TEST_DIR, 'data/test_urls.txt'), 'r') as f:
             lines = f.readlines()
@@ -523,7 +523,7 @@ class UrlTestCase(unittest.TestCase):
         """Normalizes a url, removes arguments, hashtags. If a relative url, it
         merges it with the source domain to make an abs url, etc
         """
-        from newspaper.urls import prepare_url
+        from newspaper_no_download.urls import prepare_url
 
         with open(os.path.join(TEST_DIR, 'data/test_prepare_urls.txt'), 'r') as f:
             lines = f.readlines()
@@ -543,13 +543,13 @@ class APITestCase(unittest.TestCase):
     def test_hot_trending(self):
         """Grab google trending, just make sure this runs
         """
-        newspaper.hot()
+        newspaper_no_download.hot()
 
     @print_test
     def test_popular_urls(self):
         """Just make sure this method runs
         """
-        newspaper.popular_urls()
+        newspaper_no_download.popular_urls()
 
 
 @unittest.skip("Need to mock download")
@@ -558,9 +558,9 @@ class MThreadingTestCase(unittest.TestCase):
     def test_download_works(self):
         config = Configuration()
         config.memoize_articles = False
-        slate_paper = newspaper.build('http://slate.com', config=config)
-        tc_paper = newspaper.build('http://techcrunch.com', config=config)
-        espn_paper = newspaper.build('http://espn.com', config=config)
+        slate_paper = newspaper_no_download.build('http://slate.com', config=config)
+        tc_paper = newspaper_no_download.build('http://techcrunch.com', config=config)
+        espn_paper = newspaper_no_download.build('http://espn.com', config=config)
 
         print(('Slate has %d articles TC has %d articles ESPN has %d articles'
                % (slate_paper.size(), tc_paper.size(), espn_paper.size())))
@@ -660,7 +660,7 @@ class MultiLanguageTestCase(unittest.TestCase):
 class TestNewspaperLanguagesApi(unittest.TestCase):
     @print_test
     def test_languages_api_call(self):
-        newspaper.languages()
+        newspaper_no_download.languages()
 
 
 if __name__ == '__main__':
