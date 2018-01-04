@@ -16,7 +16,7 @@ except ImportError:
 
 
 packages = [
-    'newspaper',
+    'newspaper_no_download',
 ]
 
 
@@ -28,10 +28,7 @@ if sys.argv[-1] == 'publish':
 # This *must* run early. Please see this API limitation on our users:
 # https://github.com/codelucas/newspaper/issues/155
 if sys.version_info[0] == 2 and sys.argv[-1] not in ['publish', 'upload']:
-    sys.exit('WARNING! You are attempting to install newspaper3k\'s '
-             'python3 repository on python2. PLEASE RUN '
-             '`$ pip3 install newspaper3k` for python3 or '
-             '`$ pip install newspaper` for python2')
+    sys.exit('run `$ pip3 install newspaper_no_download` for python3')
 
 
 with open('requirements.txt') as f:

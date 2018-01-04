@@ -1,4 +1,4 @@
-Newspaper3k: Article scraping & curation
+Newspaper-no-download: Article scraping & curation
 ========================================
 
 .. image:: https://badge.fury.io/py/newspaper3k.svg
