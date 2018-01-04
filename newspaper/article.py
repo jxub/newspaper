@@ -182,8 +182,7 @@ class Article(object):
         self.set_title(title)
 
     def parse(self):
-        self.throw_if_not_downloaded_verbose()
-
+        self.throw_if_no_html_verbose()
         self.doc = self.config.get_parser().fromstring(self.html)
         self.clean_doc = copy.deepcopy(self.doc)
 
@@ -339,7 +338,7 @@ class Article(object):
     def nlp(self):
         """Keyword extraction wrapper
         """
-        self.throw_if_not_downloaded_verbose()
+        self.throw_if_no_html_verbose()
         self.throw_if_not_parsed_verbose()
         
         nlp.load_stopwords(self.config.get_language())
@@ -513,16 +512,9 @@ class Article(object):
         movie_urls = [o.src for o in movie_objects if o and o.src]
         self.movies = movie_urls
 
-    def throw_if_not_downloaded_verbose(self):
-        """Parse ArticleDownloadState -> log readable status
-        -> maybe throw ArticleException
-        """
-        if self.download_state == ArticleDownloadState.NOT_STARTED:
-            print('You must `download()` an article first!')
-            raise ArticleException()
-        elif self.download_state == ArticleDownloadState.FAILED_RESPONSE:
-            print('Article `download()` failed with %s on URL %s' %
-                  (self.download_exception_msg, self.url))
+    def throw_if_no_html_verbose(self):
+        if not self.html:
+            print('You must supply the self.html argument!')
             raise ArticleException()
 
     def throw_if_not_parsed_verbose(self):
