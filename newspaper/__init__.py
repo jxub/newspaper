@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
-"""
-Wherever smart people work, doors are unlocked. -- Steve Wozniak
-"""
-__title__ = 'newspaper'
-__author__ = 'Lucas Ou-Yang'
+__title__ = 'newspaper_no_download'
+__author__ = 'Jakub Janarek'
 __license__ = 'MIT'
-__copyright__ = 'Copyright 2014, Lucas Ou-Yang'
+__copyright__ = 'Copyright 2018, Jakub Janarek'
 
 from .api import (build, build_article, fulltext, hot, languages,
                   popular_urls, Configuration as Config)

@@ -1,7 +1,7 @@
 #!/bin/python2.7
 # -*- coding: utf-8 -*-
 """
-Lucas Ou-Yang 2014 -- http://codelucas.com
+Jakub Janarek 2018
 """
 
 import sys
@@ -43,13 +43,13 @@ with codecs.open('README.rst', 'r', 'utf-8') as f:
 
 
 setup(
-    name='newspaper3k',
-    version='0.2.5',
-    description='Simplified python article discovery & extraction.',
+    name='newspaper_no_download',
+    version='0.0.1',
+    description='Newspaper3k library with no download phase',
     long_description=readme,
-    author='Lucas Ou-Yang',
-    author_email='lucasyangpersonal@gmail.com',
-    url='https://github.com/codelucas/newspaper/',
+    author='Jakub Janarek',
+    author_email='jjanarek@gmail.com',
+    url='https://github.com/jxub/newspaper_no_download',
     packages=packages,
     include_package_data=True,
     install_requires=required,
